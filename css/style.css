@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'PokemonFont';
+    src: url('fonts/pocket-monk.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {}
+
+body {
+    background-color: #cc0000;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'PokemonFont', sans-serif;
+    font-size: 10rem;
+    color: #ffcb05;
+    text-shadow:
+        -3px -3px 0 #3b4cca,
+        3px -3px 0 #3b4cca,
+        -3px 3px 0 #3b4cca,
+        3px 3px 0 #3b4cca,
+        -3px 0px 0 #3b4cca,
+        3px 0px 0 #3b4cca,
+        0px -3px 0 #3b4cca,
+        0px 3px 0 #3b4cca,
+        5px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+}
+
+#search-input {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+#search-btn {
+    /*background-color: ;*/
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#search-btn {
+    /*background-color: ;*/
+}
