@@ -1,22 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokedex - Kanto Gen 1</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23EE1515' stroke='%23222' stroke-width='6'/><path d='M4,50 A46,46 0 0,0 96,50 Z' fill='%23FFF' stroke='%23222' stroke-width='6'/><line x1='4' y1='50' x2='96' y2='50' stroke='%23222' stroke-width='8'/><circle cx='50' cy='50' r='15' fill='%23FFF' stroke='%23222' stroke-width='6'/><circle cx='50' cy='50' r='7' fill='%23FFF' stroke='%23222' stroke-width='3'/></svg>">
 </head>
 
 <body>
-    <header>
-        <h1>Pokédex</h1>
+    <!-- Pokedex Header -->
+    <header class="pokedex-header">
+        <div class="header-banner">
+            <h1 class="pokedex-title">Pokédex</h1>
+            <p class="pokedex-subtitle">Colección de los 151 primeros Pokémon de Kanto</p>
+        </div>
+
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Ejemplo">
+            <div class="input-wrapper">
+                <input type="text" id="search-input" placeholder="Buscar por nombre o número (ej: Pikachu, 25, #001)..." autocomplete="off">
+                <button type="button" id="clear-search-btn" class="clear-btn" aria-label="Limpiar búsqueda" title="Limpiar">&times;</button>
+            </div>
+
+            <div class="select-wrapper">
+                <select id="type-filter" class="type-filter-select" aria-label="Filtrar por tipo">
+                    <option value="all">Todos los tipos</option>
+                    <option value="normal">Normal</option>
+                    <option value="fire">Fuego</option>
+                    <option value="water">Agua</option>
+                    <option value="grass">Planta</option>
+                    <option value="electric">Eléctrico</option>
+                    <option value="ice">Hielo</option>
+                    <option value="fighting">Lucha</option>
+                    <option value="poison">Veneno</option>
+                    <option value="ground">Tierra</option>
+                    <option value="flying">Volador</option>
+                    <option value="psychic">Psíquico</option>
+                    <option value="bug">Bicho</option>
+                    <option value="rock">Roca</option>
+                    <option value="ghost">Fantasma</option>
+                    <option value="dragon">Dragón</option>
+                    <option value="steel">Acero</option>
+                    <option value="fairy">Hada</option>
+                </select>
+            </div>
+
             <button id="search-btn">Buscar</button>
         </div>
+
+        <div class="stats-bar">
+            <span id="pokemon-count">Cargando Pokémon...</span>
+        </div>
     </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Loading spinner -->
+        <div id="loader" class="loader-container">
+            <div class="pokeball-spinner" aria-hidden="true">
+                <div class="pokeball-top"></div>
+                <div class="pokeball-band">
+                    <div class="pokeball-button"></div>
+                </div>
+                <div class="pokeball-bottom"></div>
+            </div>
+            <p id="loader-text" class="loader-text">Conectando a PokeAPI...</p>
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- Error state -->
+        <div id="error-container" class="error-container hidden">
+            <div class="error-icon" aria-hidden="true">⚠️</div>
+            <h2 id="error-title">Error de conexión</h2>
+            <p id="error-message">No se pudo cargar la información de la PokeAPI.</p>
+            <button id="retry-btn" class="retry-btn">Reintentar</button>
+        </div>
+
+        <!-- No results message -->
+        <div id="no-results" class="no-results hidden">
+            <div class="no-results-icon" aria-hidden="true">🔍</div>
+            <h3>No se encontraron Pokémon</h3>
+            <p>Intenta con otro nombre, número o cambia el filtro de tipo.</p>
+            <button id="reset-filter-btn" class="reset-filter-btn">Restablecer filtros</button>
+        </div>
+
+        <!-- Cards grid -->
+        <div id="pokemon-container" class="pokemon-grid"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Datos obtenidos en vivo desde <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokeAPI</a> &bull; Primera Generación (1-151)</p>
+    </footer>
+
+    <script src="js/app.js"></script>
 </body>
-<script src="js/app.js"></script>
 
 </html>
